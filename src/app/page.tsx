@@ -16,13 +16,13 @@ export default function HomePage() {
         {/* Hero */}
         <section className="relative min-h-[85dvh] flex items-center">
           <Image 
-            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=2000&auto=format&fit=crop" 
-            alt="Community Health" 
+            src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?q=80&w=2000&auto=format&fit=crop" 
+            alt="Happy Community Health" 
             fill 
             priority 
             className="object-cover" 
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/70 via-zinc-950/60 to-zinc-950/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60" />
           <div className="container relative py-24 text-white">
             <motion.h1 
               initial={{opacity:0, y:20}} 
@@ -107,30 +107,56 @@ export default function HomePage() {
                 whileInView={{opacity:1, y:0}}
                 viewport={{once:true}}
                 transition={{duration:.6}}
-                className="rounded-2xl bg-white p-8 soft-shadow border border-zinc-200"
+                className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
               >
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                  <Heart className="w-8 h-8 text-red-600" />
+                <div className="relative h-48">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Mission" 
+                    fill 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+                      <Heart className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Mission</h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  To promote health, prevent diseases, and empower communities through awareness, early screening, community outreach, and research-based programs, ensuring accessible and equitable healthcare for all.
-                </p>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Mission</h3>
+                  <p className="text-zinc-600 leading-relaxed">
+                    To promote health, prevent diseases, and empower communities through awareness, early screening, community outreach, and research-based programs, ensuring accessible and equitable healthcare for all.
+                  </p>
+                </div>
               </motion.div>
               <motion.div
                 initial={{opacity:0, y:30}}
                 whileInView={{opacity:1, y:0}}
                 viewport={{once:true}}
                 transition={{duration:.6, delay:.1}}
-                className="rounded-2xl bg-white p-8 soft-shadow border border-zinc-200"
+                className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
               >
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-blue-600" />
+                <div className="relative h-48">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Vision" 
+                    fill 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/80 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                      <Shield className="w-8 h-8 text-blue-600" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Vision</h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  To build a healthier society where every individual—regardless of socio-economic background—has the knowledge, access, and opportunity to maintain good health and prevent avoidable diseases.
-                </p>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Vision</h3>
+                  <p className="text-zinc-600 leading-relaxed">
+                    To build a healthier society where every individual—regardless of socio-economic background—has the knowledge, access, and opportunity to maintain good health and prevent avoidable diseases.
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -231,8 +257,16 @@ export default function HomePage() {
         </section>
 
         {/* Impact Stats */}
-        <section className="py-20 bg-gradient-to-br from-red-50 to-orange-50">
-          <div className="container">
+        <section className="relative py-20 bg-gradient-to-br from-red-50 to-orange-50 overflow-hidden">
+          <div className="absolute inset-0">
+            <Image 
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2000&auto=format&fit=crop" 
+              alt="Background" 
+              fill 
+              className="object-cover opacity-20" 
+            />
+          </div>
+          <div className="container relative">
             <motion.div
               initial={{opacity:0, y:30}}
               whileInView={{opacity:1, y:0}}
@@ -245,10 +279,10 @@ export default function HomePage() {
             </motion.div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { number: "1000+", label: "Health Camps Organized" },
-                { number: "50+", label: "Rural Communities Reached" },
-                { number: "25+", label: "Schools & Colleges" },
-                { number: "5000+", label: "Individuals Screened" }
+                { number: "1000+", label: "Health Camps Organized", image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format&fit=crop" },
+                { number: "50+", label: "Rural Communities Reached", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=400&auto=format&fit=crop" },
+                { number: "25+", label: "Schools & Colleges", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=400&auto=format&fit=crop" },
+                { number: "5000+", label: "Individuals Screened", image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -256,10 +290,20 @@ export default function HomePage() {
                   whileInView={{opacity:1, scale:1}}
                   viewport={{once:true}}
                   transition={{duration:.6, delay:i*0.1}}
-                  className="rounded-2xl bg-white p-8 text-center soft-shadow border border-zinc-200"
+                  className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
                 >
-                  <div className="text-4xl md:text-5xl font-bold text-red-600 mb-2">{stat.number}</div>
-                  <div className="text-zinc-600 font-medium">{stat.label}</div>
+                  <div className="relative h-32">
+                    <Image 
+                      src={stat.image} 
+                      alt={stat.label} 
+                      fill 
+                      className="object-cover" 
+                    />
+                  </div>
+                  <div className="p-6 text-center">
+                    <div className="text-4xl md:text-5xl font-bold text-red-600 mb-2">{stat.number}</div>
+                    <div className="text-zinc-600 font-medium">{stat.label}</div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -267,14 +311,22 @@ export default function HomePage() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-white">
-          <div className="container">
+        <section className="relative py-20 bg-white overflow-hidden">
+          <div className="absolute inset-0">
+            <Image 
+              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=2000&auto=format&fit=crop" 
+              alt="Background" 
+              fill 
+              className="object-cover opacity-10" 
+            />
+          </div>
+          <div className="container relative">
             <motion.div
               initial={{opacity:0, y:30}}
               whileInView={{opacity:1, y:0}}
               viewport={{once:true}}
               transition={{duration:.6}}
-              className="mx-auto max-w-4xl rounded-3xl border border-zinc-200 p-12 bg-gradient-to-br from-zinc-50 to-stone-50 soft-shadow text-center"
+              className="mx-auto max-w-4xl rounded-3xl border border-zinc-200 p-12 bg-white/90 backdrop-blur-sm soft-shadow text-center"
             >
               <h3 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900">Join Us in Building a Healthier Community</h3>
               <p className="text-lg text-zinc-600 mb-8 max-w-2xl mx-auto">

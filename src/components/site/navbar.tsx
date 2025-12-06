@@ -20,7 +20,7 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/90 backdrop-blur-sm'}`}>
+    <header className="fixed inset-x-0 top-0 z-50 bg-black shadow-lg">
       <nav className="container flex items-center justify-between h-16">
         <Link href="/" className="flex items-center">
           <Image 
@@ -34,11 +34,11 @@ export function Navbar() {
         </Link>
         <div className="hidden md:flex items-center gap-6">
           {links.map(l => (
-            <Link key={l.href} href={l.href} className="text-sm text-zinc-700 hover:text-zinc-900 transition-colors font-medium">
+            <Link key={l.href} href={l.href} className="text-sm text-white hover:text-zinc-300 transition-colors font-medium">
               {l.label}
             </Link>
           ))}
-          <Button size="sm">Donate</Button>
+          <Button size="sm" className="bg-white text-black hover:bg-zinc-200">Donate</Button>
         </div>
       </nav>
     </header>

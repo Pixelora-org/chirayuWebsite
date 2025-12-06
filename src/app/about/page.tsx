@@ -83,30 +83,56 @@ export default function AboutPage() {
                 whileInView={{opacity:1, y:0}}
                 viewport={{once:true}}
                 transition={{duration:.6}}
-                className="rounded-2xl bg-white p-8 soft-shadow border border-zinc-200"
+                className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
               >
-                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-6">
-                  <Target className="w-8 h-8 text-red-600" />
+                <div className="relative h-48">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Mission" 
+                    fill 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/70 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                      <Target className="w-8 h-8 text-red-600" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Mission</h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  To promote health, prevent diseases, and empower communities through awareness, early screening, community outreach, and research-based programs, ensuring accessible and equitable healthcare for all.
-                </p>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Mission</h3>
+                  <p className="text-zinc-600 leading-relaxed">
+                    To promote health, prevent diseases, and empower communities through awareness, early screening, community outreach, and research-based programs, ensuring accessible and equitable healthcare for all.
+                  </p>
+                </div>
               </motion.div>
               <motion.div
                 initial={{opacity:0, y:30}}
                 whileInView={{opacity:1, y:0}}
                 viewport={{once:true}}
                 transition={{duration:.6, delay:.1}}
-                className="rounded-2xl bg-white p-8 soft-shadow border border-zinc-200"
+                className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
               >
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
-                  <Shield className="w-8 h-8 text-blue-600" />
+                <div className="relative h-48">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1200&auto=format&fit=crop" 
+                    alt="Vision" 
+                    fill 
+                    className="object-cover" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/70 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                      <Shield className="w-8 h-8 text-blue-600" />
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Vision</h3>
-                <p className="text-zinc-600 leading-relaxed">
-                  To build a healthier society where every individual—regardless of socio-economic background—has the knowledge, access, and opportunity to maintain good health and prevent avoidable diseases.
-                </p>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold mb-4 text-zinc-900">Our Vision</h3>
+                  <p className="text-zinc-600 leading-relaxed">
+                    To build a healthier society where every individual—regardless of socio-economic background—has the knowledge, access, and opportunity to maintain good health and prevent avoidable diseases.
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -183,17 +209,20 @@ export default function AboutPage() {
                 {
                   icon: <Lightbulb className="w-8 h-8" />,
                   title: "Early Detection",
-                  description: "Early detection leads to early treatment, creating healthier communities"
+                  description: "Early detection leads to early treatment, creating healthier communities",
+                  image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=600&auto=format&fit=crop"
                 },
                 {
                   icon: <Users className="w-8 h-8" />,
                   title: "Community Engagement",
-                  description: "Awareness + Screening + Counselling + Referral support"
+                  description: "Awareness + Screening + Counselling + Referral support",
+                  image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=600&auto=format&fit=crop"
                 },
                 {
                   icon: <Heart className="w-8 h-8" />,
                   title: "Collaboration",
-                  description: "Working with local leaders, NGOs, institutions & healthcare professionals"
+                  description: "Working with local leaders, NGOs, institutions & healthcare professionals",
+                  image: "https://images.unsplash.com/photo-1551601651-2a8555f1a136?q=80&w=600&auto=format&fit=crop"
                 }
               ].map((item, i) => (
                 <motion.div
@@ -202,13 +231,26 @@ export default function AboutPage() {
                   whileInView={{opacity:1, y:0}}
                   viewport={{once:true}}
                   transition={{duration:.6, delay:i*0.1}}
-                  className="rounded-2xl bg-white p-8 soft-shadow border border-zinc-200 text-center"
+                  className="rounded-2xl overflow-hidden bg-white soft-shadow border border-zinc-200"
                 >
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <div className="text-red-600">{item.icon}</div>
+                  <div className="relative h-40">
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      fill 
+                      className="object-cover" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                        <div className="text-red-600">{item.icon}</div>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-zinc-900">{item.title}</h3>
-                  <p className="text-zinc-600">{item.description}</p>
+                  <div className="p-6 text-center">
+                    <h3 className="text-xl font-bold mb-3 text-zinc-900">{item.title}</h3>
+                    <p className="text-zinc-600">{item.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>

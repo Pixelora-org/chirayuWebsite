@@ -29,11 +29,11 @@ export const navLinks = [
 ] as const
 
 export const photos = {
-  hero: '/images/gallery/student-checkup.webp',
+  hero: '/images/gallery/community-event.webp',
   whoWeAre: '/images/gallery/rural-outreach.webp',
-  about: '/images/gallery/school-screening.webp',
+  about: '/images/gallery/student-checkup.webp',
   programs: '/images/gallery/eye-exam.webp',
-  getInvolved: '/images/gallery/community-event.webp',
+  getInvolved: '/images/gallery/school-screening.webp',
   contact: '/images/gallery/yoga-camp.webp',
 } as const
 

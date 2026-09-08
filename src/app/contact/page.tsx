@@ -2,8 +2,8 @@
 
 import { FormEvent, useState } from 'react'
 import { PageShell } from '../../components/site/page-shell'
-import { SmartImage } from '../../components/site/smart-image'
-import { MapPin, Phone, Mail, Facebook } from 'lucide-react'
+import { PageIntro } from '../../components/site/page-intro'
+import { PhotoFigure } from '../../components/site/photo-figure'
 import { mapsEmbedUrl, photos, site } from '../../lib/site'
 
 export default function ContactPage() {
@@ -43,127 +43,98 @@ export default function ContactPage() {
 
   return (
     <PageShell>
-      <section className="py-10 sm:py-16 md:py-20 bg-[#faf7f4] border-b border-zinc-200">
-        <div className="container">
-          <p className="brand-kicker mb-3">Contact</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#1b365d]">Contact Us</h1>
-          <p className="text-base sm:text-xl text-zinc-600 max-w-3xl">
-            Reach out for partnerships, health camps, or general enquiries.
-          </p>
-        </div>
+      <PageIntro kicker="Contact" title="Write, call, or come to Jayanagar">
+        Partnerships, health camps, and general enquiries all come to the same desk.
+      </PageIntro>
+
+      <section className="pb-12 sm:pb-16">
+        <PhotoFigure
+          src={photos.contact}
+          alt="Chirayu health camp in Dharwad"
+          caption="Yoga Day health camp, Dharwad"
+          className="container-bleed"
+          imgClassName="h-[48vw] max-h-[480px] min-h-[240px]"
+          sizes="100vw"
+          priority
+        />
       </section>
 
-      <section className="py-10 sm:py-16 bg-white">
-        <div className="container">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="rounded-2xl border border-zinc-200 p-5 sm:p-8 bg-white min-w-0">
-              <h2 className="text-xl sm:text-2xl font-bold mb-6 text-[#1b365d]">Send us a message</h2>
-              <form className="space-y-4" onSubmit={onSubmit}>
-                <input name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-                <input name="name" required placeholder="Full name" className="h-12 w-full rounded-lg border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40" />
-                <input name="email" type="email" required placeholder="Email address" className="h-12 w-full rounded-lg border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40" />
-                <input name="phone" type="tel" placeholder="Phone number" className="h-12 w-full rounded-lg border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40" />
-                <textarea name="message" required placeholder="Your message" rows={6} className="w-full rounded-lg border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40 resize-none" />
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="w-full h-12 rounded-full bg-[#c2185b] text-white font-semibold hover:bg-[#9c1249] transition-colors disabled:opacity-60"
-                >
-                  {status === 'sending' ? 'Sending...' : 'Send message'}
-                </button>
-                {status === 'sent' && (
-                  <p className="text-sm text-green-700 text-center">Thank you. Your message has been sent to Chirayu.</p>
-                )}
-                {status === 'error' && (
-                  <p className="text-sm text-red-600 text-center">{error}</p>
-                )}
-              </form>
-            </div>
-
-            <div className="space-y-6 min-w-0">
-              <div className="rounded-2xl border border-zinc-200 p-5 sm:p-8 bg-white">
-                <h2 className="text-xl sm:text-2xl font-bold mb-6 text-[#1b365d]">Get in Touch</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center flex-shrink-0">
-                      <MapPin className="w-6 h-6 text-[#c2185b]" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-zinc-900 mb-1">Address</h3>
-                      <p className="text-zinc-600 leading-relaxed">
-                        {site.name}<br />
-                        {site.address.line1}<br />
-                        {site.address.line2}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-6 h-6 text-[#1b365d]" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-zinc-900 mb-1">Phone</h3>
-                      <ul className="text-zinc-600 space-y-1">
-                        {site.phones.map((p) => (
-                          <li key={p.href} className="flex flex-wrap gap-x-1">
-                            <a href={p.href} className="hover:text-[#c2185b]">
-                              {p.display}
-                            </a>
-                            <span className="text-zinc-400 text-sm"> · {p.label}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-6 h-6 text-green-700" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-zinc-900 mb-1">Email</h3>
-                      <a href={`mailto:${site.email}`} className="text-zinc-600 hover:text-[#c2185b] break-all">
-                        {site.email}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center flex-shrink-0">
-                      <Facebook className="w-6 h-6 text-[#1877F2]" />
-                    </div>
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-zinc-900 mb-1">Facebook</h3>
-                      <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-[#c2185b] break-words">
-                        Follow Chirayu on Facebook
-                      </a>
-                    </div>
-                  </div>
-                </div>
+      <section className="pb-20 sm:pb-28">
+        <div className="container grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-5 min-w-0">
+            <h2 className="font-display text-3xl text-[#1b365d] mb-8">Get in touch</h2>
+            <dl className="space-y-8 text-zinc-600">
+              <div className="border-t border-zinc-200/90 pt-4">
+                <dt className="text-xs tracking-[0.16em] uppercase text-zinc-400 mb-2">Address</dt>
+                <dd className="leading-relaxed">
+                  {site.name}
+                  <br />
+                  {site.address.line1}
+                  <br />
+                  {site.address.line2}
+                </dd>
               </div>
-
-              <div className="rounded-2xl border border-zinc-200 overflow-hidden">
-                <iframe
-                  title="Chirayu location in Dharwad"
-                  src={mapsEmbedUrl()}
-                  className="w-full h-56 sm:h-64 border-0"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
+              <div className="border-t border-zinc-200/90 pt-4">
+                <dt className="text-xs tracking-[0.16em] uppercase text-zinc-400 mb-2">Phone</dt>
+                <dd className="space-y-1">
+                  {site.phones.map((p) => (
+                    <div key={p.href}>
+                      <a href={p.href} className="hover:text-[#c2185b]">
+                        {p.display}
+                      </a>
+                      <span className="text-zinc-400 text-sm"> · {p.label}</span>
+                    </div>
+                  ))}
+                </dd>
               </div>
+              <div className="border-t border-zinc-200/90 pt-4">
+                <dt className="text-xs tracking-[0.16em] uppercase text-zinc-400 mb-2">Email</dt>
+                <dd>
+                  <a href={`mailto:${site.email}`} className="hover:text-[#c2185b] break-all">
+                    {site.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="border-t border-zinc-200/90 pt-4">
+                <dt className="text-xs tracking-[0.16em] uppercase text-zinc-400 mb-2">Facebook</dt>
+                <dd>
+                  <a href={site.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-[#c2185b]">
+                    Follow Chirayu on Facebook
+                  </a>
+                </dd>
+              </div>
+            </dl>
+            <div className="mt-10 overflow-hidden">
+              <iframe
+                title="Chirayu location in Dharwad"
+                src={mapsEmbedUrl()}
+                className="w-full h-56 sm:h-64 border-0 grayscale-[30%]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
 
-          <div className="relative w-full h-44 sm:h-[280px] mt-8 sm:mt-10 rounded-2xl overflow-hidden">
-            <SmartImage
-              src={photos.contact}
-              alt="Chirayu health camp in Dharwad"
-              fill
-              eager
-              sizes="100vw"
-              className="object-cover"
-            />
+          <div className="lg:col-span-6 lg:col-start-7 min-w-0">
+            <h2 className="font-display text-3xl text-[#1b365d] mb-8">Send a message</h2>
+            <form className="space-y-5" onSubmit={onSubmit}>
+              <input name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+              <input name="name" required placeholder="Full name" className="field" />
+              <input name="email" type="email" required placeholder="Email address" className="field" />
+              <input name="phone" type="tel" placeholder="Phone number" className="field" />
+              <textarea name="message" required placeholder="Your message" rows={6} className="field" />
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="mt-4 h-12 px-8 rounded-full bg-[#c2185b] text-white font-medium hover:bg-[#9c1249] transition-colors disabled:opacity-60"
+              >
+                {status === 'sending' ? 'Sending...' : 'Send message'}
+              </button>
+              {status === 'sent' && (
+                <p className="text-sm text-green-700">Thank you. Your message has been sent to Chirayu.</p>
+              )}
+              {status === 'error' && <p className="text-sm text-red-600">{error}</p>}
+            </form>
           </div>
         </div>
       </section>

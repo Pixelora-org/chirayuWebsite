@@ -3,13 +3,22 @@
 import Link from 'next/link'
 import { FormEvent, useState } from 'react'
 import { PageShell } from '../../components/site/page-shell'
-import { Button } from '../../components/ui/button'
-import { SmartImage } from '../../components/site/smart-image'
-import { Users, Handshake } from 'lucide-react'
+import { PageIntro } from '../../components/site/page-intro'
+import { PhotoFigure } from '../../components/site/photo-figure'
 import { photos } from '../../lib/site'
 
-const fieldClass =
-  'h-12 w-full rounded-lg border border-zinc-300 px-4 bg-white focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40'
+const paths = [
+  {
+    title: 'Volunteer',
+    description: 'Give time and skills, whether you are a medical professional, student, or neighbour who can help a camp run.',
+    points: ['Medical professionals', 'Camp organisation', 'Community outreach'],
+  },
+  {
+    title: 'Partner',
+    description: 'Invite Chirayu into a school, workplace, or organisation so screening and awareness reach more people in one day.',
+    points: ['School programmes', 'Workplace screening', 'NGO collaborations'],
+  },
+]
 
 export default function GetInvolvedPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
@@ -47,81 +56,57 @@ export default function GetInvolvedPage() {
       setError(err instanceof Error ? err.message : 'Could not send the enquiry.')
     }
   }
+
   return (
     <PageShell>
-      <section className="py-10 sm:py-16 md:py-20 bg-[#faf7f4] border-b border-zinc-200">
-        <div className="container">
-          <p className="brand-kicker mb-3">Get Involved</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#1b365d]">Join the work</h1>
-          <p className="text-base sm:text-xl text-zinc-600 max-w-3xl">
-            Volunteer or partner with Chirayu to bring preventive healthcare to more communities in Dharwad.
-          </p>
+      <PageIntro kicker="Get Involved" title="The work is larger than one team">
+        Volunteer a day, or open a school or workplace so Chirayu can come in. Either way, write to us from this page.
+      </PageIntro>
+
+      <section className="pb-16 sm:pb-24">
+        <PhotoFigure
+          src={photos.getInvolved}
+          alt="Schoolgirls gathered around a Chirayu health camp table"
+          caption="School health camp, Dharwad"
+          className="container-bleed"
+          imgClassName="h-[58vw] max-h-[600px] min-h-[280px]"
+          sizes="100vw"
+          priority
+        />
+      </section>
+
+      <section className="pb-16 sm:pb-24">
+        <div className="container grid md:grid-cols-2 gap-12 md:gap-20">
+          {paths.map((item) => (
+            <article key={item.title}>
+              <h2 className="font-display text-3xl text-[#1b365d]">{item.title}</h2>
+              <div className="gold-rule my-5" />
+              <p className="text-zinc-600 leading-relaxed">{item.description}</p>
+              <ul className="mt-6 space-y-2 text-sm text-zinc-600">
+                {item.points.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
+              </ul>
+              <Link href="/contact" className="inline-block mt-8 text-sm text-[#c2185b] underline underline-offset-4 decoration-[#c2185b]/30 hover:decoration-[#c2185b]">
+                Talk to us
+              </Link>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="py-10 sm:py-16 bg-white">
-        <div className="container">
-          <div className="relative w-full h-56 sm:h-80 md:h-[440px] rounded-2xl overflow-hidden soft-shadow mb-8 sm:mb-14">
-            <SmartImage
-              src={photos.getInvolved}
-              alt="Community programme with Chirayu Health Awareness and Research Centre"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-          </div>
-
-          <div className="grid sm:grid-cols-2 gap-5 sm:gap-6 items-stretch max-w-4xl mx-auto">
-            {[
-              {
-                icon: Users,
-                title: 'Volunteer',
-                description: 'Give time and skills, whether you are a medical professional, student, or community member.',
-                points: ['Medical professionals welcome', 'Camp organisation', 'Community outreach'],
-              },
-              {
-                icon: Handshake,
-                title: 'Partner',
-                description: 'Bring Chirayu programmes to your school, workplace, or organisation and help us reach more people.',
-                points: ['School health programmes', 'Workplace screening', 'NGO collaborations'],
-              },
-            ].map((item) => (
-              <article key={item.title} className="h-full flex flex-col rounded-2xl border border-zinc-200 p-5 sm:p-7 bg-white">
-                <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mb-4 text-[#c2185b]">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-2 text-[#1b365d]">{item.title}</h3>
-                <p className="text-zinc-600 leading-relaxed min-h-[4.75rem]">{item.description}</p>
-                <ul className="space-y-2 mt-5 mb-6 flex-1">
-                  {item.points.map((p) => (
-                    <li key={p} className="text-sm text-zinc-600 flex gap-2">
-                      <span className="text-[#c2185b]">•</span>
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/contact" className="mt-auto block">
-                  <Button className="w-full" variant="outline">Talk to us</Button>
-                </Link>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f4]">
-        <div className="container max-w-2xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-[#1b365d]">Become a volunteer</h2>
-          <p className="text-zinc-600 mb-8 leading-relaxed">
-            Send us your name, phone, and how you would like to help. We will get back to you.
+      <section className="pb-20 sm:pb-28">
+        <div className="container max-w-xl">
+          <h2 className="font-display text-3xl sm:text-4xl text-[#1b365d] mb-3">Become a volunteer</h2>
+          <p className="text-zinc-600 mb-10 leading-relaxed">
+            Send your name, phone, and how you would like to help. We will write back.
           </p>
-          <form className="space-y-4" onSubmit={onVolunteerSubmit}>
+          <form className="space-y-5" onSubmit={onVolunteerSubmit}>
             <input name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-            <input name="name" required placeholder="Full name" className={fieldClass} />
-            <input name="email" type="email" required placeholder="Email address" className={fieldClass} />
-            <input name="phone" type="tel" required placeholder="Phone number" className={fieldClass} />
-            <select name="interest" required defaultValue="" className={`${fieldClass} text-zinc-700`}>
+            <input name="name" required placeholder="Full name" className="field" />
+            <input name="email" type="email" required placeholder="Email address" className="field" />
+            <input name="phone" type="tel" required placeholder="Phone number" className="field" />
+            <select name="interest" required defaultValue="" className="field text-zinc-700">
               <option value="" disabled>
                 Area of interest
               </option>
@@ -135,21 +120,19 @@ export default function GetInvolvedPage() {
               required
               placeholder="A short note about yourself and how you would like to help"
               rows={5}
-              className="w-full rounded-lg border border-zinc-300 px-4 py-3 bg-white focus:outline-none focus:ring-2 focus:ring-[#c2185b]/40 resize-none"
+              className="field"
             />
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="w-full h-12 rounded-full bg-[#c2185b] text-white font-semibold hover:bg-[#9c1249] transition-colors disabled:opacity-60"
+              className="mt-4 h-12 px-8 rounded-full bg-[#c2185b] text-white font-medium hover:bg-[#9c1249] transition-colors disabled:opacity-60"
             >
               {status === 'sending' ? 'Sending...' : 'Send enquiry'}
             </button>
             {status === 'sent' && (
-              <p className="text-sm text-green-700 text-center">Thank you. Your volunteer enquiry has been sent to Chirayu.</p>
+              <p className="text-sm text-green-700">Thank you. Your volunteer enquiry has been sent to Chirayu.</p>
             )}
-            {status === 'error' && (
-              <p className="text-sm text-red-600 text-center">{error}</p>
-            )}
+            {status === 'error' && <p className="text-sm text-red-600">{error}</p>}
           </form>
         </div>
       </section>

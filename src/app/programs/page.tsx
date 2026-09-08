@@ -2,163 +2,97 @@
 
 import Link from 'next/link'
 import { PageShell } from '../../components/site/page-shell'
+import { PageIntro } from '../../components/site/page-intro'
+import { PhotoFigure } from '../../components/site/photo-figure'
 import { Button } from '../../components/ui/button'
-import { SmartImage } from '../../components/site/smart-image'
-import { Stethoscope, Activity, GraduationCap, Users, Heart, Shield } from 'lucide-react'
 import { photos } from '../../lib/site'
 
 const programs = [
   {
-    icon: Stethoscope,
-    title: 'Health Awareness Programs',
-    description: 'Regular awareness sessions to educate communities and prevent disease.',
-    items: [
-      'Diabetes & Hypertension',
-      'Anaemia & Nutrition',
-      'Women’s Health',
-      'Mental Health',
-      'Lifestyle Diseases',
-      'Hygiene, Sanitation & Infectious Diseases',
-      'School Health Education',
-    ],
-    heading: 'Awareness topics',
+    n: '01',
+    title: 'Health awareness programmes',
+    description: 'Regular sessions so communities can recognise risk early and change what they can.',
+    items: 'Diabetes and hypertension, anaemia and nutrition, women’s health, mental health, lifestyle disease, hygiene and infectious disease, school health education',
   },
   {
-    icon: Activity,
-    title: 'Community Health Screening',
-    description: 'Free and affordable screening camps in villages, slums, schools, and workplaces.',
-    items: [
-      'Rural villages & remote locations',
-      'Schools & colleges',
-      'Senior citizen groups',
-      'Driver & occupational worker groups',
-      'BP, blood sugar, ECG',
-      'Anaemia, BMI, vision check',
-    ],
-    heading: 'Where and what we screen',
+    n: '02',
+    title: 'Community health screening',
+    description: 'Free and affordable camps in villages, slums, schools, and workplaces.',
+    items: 'Rural and remote locations, schools and colleges, senior groups, drivers and occupational workers, BP, blood sugar, ECG, anaemia, BMI, vision',
   },
   {
-    icon: GraduationCap,
-    title: 'School Health Programs',
-    description: 'Early detection and preventive care for students.',
-    items: [
-      'Vision screening',
-      'Growth assessment',
-      'Nutrition & hygiene education',
-      'Basic health check-ups',
-      'Mental health and stress awareness',
-    ],
-    heading: 'Services',
+    n: '03',
+    title: 'School health programmes',
+    description: 'Early detection and prevention while children are still in the classroom.',
+    items: 'Vision screening, growth assessment, nutrition and hygiene education, basic check-ups, mental health and stress awareness',
   },
   {
-    icon: Users,
-    title: 'Women & Adolescent Health',
-    description: 'Programmes focused on women’s health, adolescent care, and preventive screening.',
-    items: [
-      'Anaemia screening',
-      'Menstrual health and hygiene',
-      'Thyroid & vitamin deficiency screening',
-      'Nutrition counselling',
-      'Women’s health awareness sessions',
-    ],
-    heading: 'Services',
+    n: '04',
+    title: 'Women and adolescent health',
+    description: 'Care that is often skipped because it is treated as private or secondary.',
+    items: 'Anaemia screening, menstrual health, thyroid and vitamin deficiency, nutrition counselling, women’s health sessions',
   },
   {
-    icon: Heart,
-    title: 'Senior Citizen Health Support',
-    description: 'Support for elderly community members, including chronic disease monitoring.',
-    items: [
-      'ECG & cardiac risk screening',
-      'Blood pressure & diabetes monitoring',
-      'Mobility, bone health & general check-ups',
-      'Chronic disease management',
-      'Health counselling for seniors',
-    ],
-    heading: 'Services',
+    n: '05',
+    title: 'Senior citizen health support',
+    description: 'Monitoring for the conditions that accumulate with age.',
+    items: 'ECG and cardiac risk, blood pressure and diabetes, mobility and bone health, chronic disease support, counselling',
   },
   {
-    icon: Shield,
-    title: 'Research & Data-Based Intervention',
-    description: 'Community health data to identify patterns and design better programmes.',
-    items: [
-      'Identify disease patterns',
-      'Improve health planning',
-      'Support research and publications',
-      'Help organisations design targeted programmes',
-    ],
-    heading: 'Activities',
+    n: '06',
+    title: 'Research and data',
+    description: 'Community health notes that help us see patterns and plan the next camp more honestly.',
+    items: 'Disease patterns, health planning, research support, programmes designed for a specific place rather than a generic template',
   },
 ]
 
 export default function ProgramsPage() {
   return (
     <PageShell>
-      <section className="py-10 sm:py-16 md:py-20 bg-[#faf7f4] border-b border-zinc-200">
-        <div className="container">
-          <p className="brand-kicker mb-3">Programs</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#1b365d]">Our Programs and Projects</h1>
-          <p className="text-base sm:text-xl text-zinc-600 max-w-3xl">
-            Comprehensive health programmes reaching communities across Dharwad, Karnataka.
-          </p>
+      <PageIntro kicker="Programs" title="The work, listed without the brochure language">
+        Six lines of work, carried into schools, villages, and community halls across Dharwad.
+      </PageIntro>
+
+      <section className="pb-12 sm:pb-20">
+        <PhotoFigure
+          src={photos.programs}
+          alt="Eye screening for an elderly community member"
+          caption="Eye screening at a community camp"
+          className="container-bleed"
+          imgClassName="h-[58vw] max-h-[620px] min-h-[280px]"
+          sizes="100vw"
+          priority
+        />
+      </section>
+
+      <section className="pb-8">
+        <div className="container divide-y divide-zinc-200/90">
+          {programs.map((program) => (
+            <article key={program.n} className="grid md:grid-cols-12 gap-4 md:gap-10 py-10 md:py-14">
+              <div className="md:col-span-1 font-display text-lg text-[#c5a046]">{program.n}</div>
+              <div className="md:col-span-4">
+                <h2 className="font-display text-2xl sm:text-3xl text-[#1b365d] leading-snug">{program.title}</h2>
+              </div>
+              <div className="md:col-span-7">
+                <p className="text-zinc-700 leading-relaxed">{program.description}</p>
+                <p className="mt-4 text-sm text-zinc-500 leading-relaxed">{program.items}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section className="py-10 sm:py-16 bg-white">
+      <section className="pb-20 sm:pb-28">
         <div className="container">
-          <div className="relative w-full h-56 sm:h-80 md:h-[460px] rounded-2xl overflow-hidden soft-shadow mb-10 sm:mb-16">
-            <SmartImage
-              src={photos.programs}
-              alt="Eye screening for an elderly community member"
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
-            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
-              <p className="text-xs sm:text-sm uppercase tracking-wide text-white/80">From our camps</p>
-              <p className="text-lg sm:text-xl md:text-2xl font-semibold">Vision and general screening for seniors and communities</p>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-            {programs.map((program) => (
-              <article
-                key={program.title}
-                className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-8"
-              >
-                <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mb-4 text-[#c2185b]">
-                  <program.icon className="w-6 h-6" />
-                </div>
-                <h2 className="text-xl sm:text-2xl font-bold mb-2 text-[#1b365d]">{program.title}</h2>
-                <p className="text-zinc-600 mb-5 leading-relaxed">{program.description}</p>
-                <h3 className="font-semibold text-zinc-900 mb-2 text-sm uppercase tracking-wide">{program.heading}</h3>
-                <ul className="space-y-1.5">
-                  {program.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-zinc-600 text-sm">
-                      <span className="text-[#c2185b] mt-1">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f4]">
-        <div className="container text-center max-w-3xl">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#1b365d]">Partner With Us</h2>
-          <p className="text-base sm:text-lg text-zinc-600 mb-8">
-            Interested in bringing our health programmes to your school, workplace, or community? Get in touch.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+          <h2 className="font-display text-3xl sm:text-4xl text-[#1b365d] max-w-2xl">
+            Bring a programme to your school, workplace, or neighbourhood
+          </h2>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link href="/contact">
               <Button size="lg">Contact Us</Button>
             </Link>
-            <Link href="/get-involved">
-              <Button variant="outline" size="lg">Get Involved</Button>
+            <Link href="/get-involved" className="text-sm text-[#1b365d] underline underline-offset-4 decoration-[#1b365d]/25 hover:text-[#c2185b]">
+              Get involved
             </Link>
           </div>
         </div>

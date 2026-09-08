@@ -1,100 +1,92 @@
 'use client'
 
 import { PageShell } from '../../components/site/page-shell'
-import { SmartImage } from '../../components/site/smart-image'
-import { MapPin, Users, Target, Heart, Shield, Lightbulb } from 'lucide-react'
+import { PageIntro } from '../../components/site/page-intro'
+import { PhotoFigure } from '../../components/site/photo-figure'
 import { photos } from '../../lib/site'
+
+const places = [
+  'Rural villages and tribal areas',
+  'Urban slum communities',
+  'Schools and colleges',
+  'Senior citizen groups',
+  'Occupational workers and drivers',
+  'Women and adolescent groups',
+]
+
+const principles = [
+  { title: 'Find it early', text: 'Screening and awareness before illness has a long head start.' },
+  { title: 'Stay with the community', text: 'Awareness, screening, counselling, and referral, not a one-day visit that disappears.' },
+  { title: 'Work with others', text: 'Local leaders, NGOs, schools, and health professionals, because one centre cannot cover a district alone.' },
+]
 
 export default function AboutPage() {
   return (
     <PageShell>
-      <section className="py-10 sm:py-16 md:py-20 bg-[#faf7f4] border-b border-zinc-200">
-        <div className="container">
-          <p className="brand-kicker mb-3">About</p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#1b365d]">
-            About Chirayu
-          </h1>
-          <p className="text-base sm:text-xl text-zinc-600 max-w-3xl leading-relaxed">
-            A community-focused health organisation dedicated to improving public health through awareness, early detection, preventive care, and research-based interventions.
-          </p>
-        </div>
+      <PageIntro kicker="About" title="A health centre that goes out, instead of waiting in">
+        Chirayu works from Jayanagar, Dharwad, to put awareness, early detection, and prevention within reach of people who are usually last to be seen.
+      </PageIntro>
+
+      <section className="pb-16 sm:pb-24">
+        <PhotoFigure
+          src={photos.about}
+          alt="Chirayu health worker screening a school student"
+          caption="School health screening, Dharwad"
+          className="container-bleed"
+          imgClassName="h-[58vw] max-h-[640px] min-h-[280px]"
+          imageClassName="object-[center_70%]"
+          sizes="100vw"
+          priority
+        />
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-14 items-center">
-            <div className="min-w-0">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 text-[#1b365d]">Who We Are</h2>
-              <div className="space-y-4 text-base sm:text-lg text-zinc-600 leading-relaxed">
-                <p>
-                  <strong className="text-zinc-800">Chirayu Health Awareness and Research Centre</strong> works to bring quality healthcare closer to underserved communities and to empower people with the knowledge to lead healthier lives.
-                </p>
-                <p>
-                  We collaborate with schools, colleges, rural communities, slum areas, senior citizen groups, occupational workers, NGOs, and government organisations.
-                </p>
-              </div>
-            </div>
-            <div className="relative w-full h-56 sm:h-80 md:h-[420px] rounded-2xl overflow-hidden soft-shadow">
-              <SmartImage
-                src={photos.about}
-                alt="Chirayu school health camp with students"
-                fill
-                eager
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+      <section className="pb-16 sm:pb-24">
+        <div className="container grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <h2 className="lg:col-span-4 font-display text-3xl sm:text-4xl text-[#1b365d] leading-tight">
+            Who we are
+          </h2>
+          <div className="lg:col-span-8 space-y-5 text-zinc-600 leading-relaxed text-base sm:text-lg max-w-2xl">
+            <p>
+              Chirayu Health Awareness and Research Centre is a community health organisation. The work is practical: camps, classrooms, village visits, and the slow job of helping people notice a problem while it is still small.
+            </p>
+            <p>
+              We collaborate with schools, colleges, rural communities, slum areas, senior groups, occupational workers, NGOs, and government organisations around Dharwad and Hubli.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f4]">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-5 sm:gap-8">
-            <div className="rounded-2xl bg-white border border-zinc-200 p-5 sm:p-8">
-              <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center mb-5">
-                <Target className="w-6 h-6 text-[#c2185b]" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[#1b365d]">Our Mission</h3>
-              <p className="text-zinc-600 leading-relaxed">
-                To promote health, prevent diseases, and empower communities through awareness, early screening, community outreach, and research-based programmes, ensuring accessible and equitable healthcare for all.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-white border border-zinc-200 p-5 sm:p-8">
-              <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-5">
-                <Shield className="w-6 h-6 text-[#1b365d]" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[#1b365d]">Our Vision</h3>
-              <p className="text-zinc-600 leading-relaxed">
-                To build a healthier society where every individual, regardless of socio-economic background, has the knowledge, access, and opportunity to maintain good health and prevent avoidable diseases.
-              </p>
-            </div>
+      <section className="py-16 sm:py-24 border-y border-zinc-200/80 bg-white/40">
+        <div className="container grid md:grid-cols-2 gap-12 md:gap-20">
+          <div>
+            <p className="brand-kicker mb-4">Mission</p>
+            <p className="font-display text-2xl sm:text-3xl text-[#1b365d] leading-snug">
+              Promote health, prevent disease, and keep care accessible through awareness, screening, outreach, and research.
+            </p>
+          </div>
+          <div>
+            <p className="brand-kicker mb-4">Vision</p>
+            <p className="font-display text-2xl sm:text-3xl text-[#1b365d] leading-snug">
+              A society where background does not decide whether someone gets the knowledge and chance to stay well.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="container max-w-3xl">
-          <div className="flex items-start sm:items-center gap-3 mb-6">
-            <div className="w-12 h-12 bg-rose-50 rounded-full flex items-center justify-center shrink-0">
-              <MapPin className="w-6 h-6 text-[#c2185b]" />
-            </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1b365d]">Where We Work</h2>
+      <section className="py-16 sm:py-24">
+        <div className="container grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-5">
+            <p className="brand-kicker mb-4">Where we work</p>
+            <h2 className="font-display text-3xl sm:text-4xl text-[#1b365d] leading-tight">
+              From Jayanagar into the district
+            </h2>
+            <p className="mt-5 text-zinc-600 leading-relaxed">
+              The office is at Jayanagar 2nd Cross, Dharwad, 580 007. Programmes run in rural and urban pockets of Dharwad and Hubli.
+            </p>
           </div>
-          <p className="text-base sm:text-lg text-zinc-600 leading-relaxed mb-6">
-            Chirayu is based at <strong className="text-zinc-800">Jayanagar 2nd Cross, Dharwad, 580 007</strong>, Karnataka. Programmes run in rural and urban areas in and around Dharwad and Hubli.
-          </p>
-          <ul className="grid sm:grid-cols-2 gap-3 text-zinc-700">
-            {[
-              'Rural villages and tribal areas',
-              'Urban slum communities',
-              'Schools and colleges',
-              'Senior citizen groups',
-              'Occupational workers and drivers',
-              'Women and adolescent groups',
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2">
-                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#c2185b] shrink-0" />
+          <ul className="lg:col-span-7 grid sm:grid-cols-2 gap-x-10 gap-y-3 text-zinc-700 content-start">
+            {places.map((item) => (
+              <li key={item} className="border-t border-zinc-200/90 pt-3">
                 {item}
               </li>
             ))}
@@ -102,47 +94,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f4]">
+      <section className="pb-20 sm:pb-28">
         <div className="container">
-          <div className="text-center mb-10 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 text-[#1b365d]">Our Approach</h2>
-            <p className="text-base sm:text-lg text-zinc-600">Community-centric, preventive, and data-driven</p>
-          </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
-            {[
-              { icon: Lightbulb, title: 'Early Detection', description: 'Early detection leads to early treatment and healthier communities.' },
-              { icon: Users, title: 'Community Engagement', description: 'Awareness, screening, counselling, and referral support together.' },
-              { icon: Heart, title: 'Collaboration', description: 'Working with local leaders, NGOs, institutions, and health professionals.' },
-            ].map((item) => (
-              <div key={item.title} className="rounded-2xl bg-white border border-zinc-200 p-6 sm:p-8 text-center">
-                <div className="w-14 h-14 bg-rose-50 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-[#c2185b]" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-[#1b365d]">{item.title}</h3>
-                <p className="text-zinc-600">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="container">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 sm:mb-10 text-center text-[#1b365d]">Why Choose Chirayu</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              'Community-focused approach',
-              'Affordable and accessible services',
-              'Experienced health team',
-              'Trusted by local communities',
-              'Research-based planning',
-              'Transparent and ethical approach',
-            ].map((item) => (
-              <div key={item} className="rounded-xl border border-zinc-200 p-5 bg-zinc-50">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-[#c2185b] rounded-full shrink-0" />
-                  <span className="font-medium text-zinc-900">{item}</span>
-                </div>
+          <p className="brand-kicker mb-4">How we work</p>
+          <h2 className="font-display text-3xl sm:text-4xl text-[#1b365d] mb-12 max-w-xl">Three habits we try to keep</h2>
+          <div className="grid md:grid-cols-3 gap-10 md:gap-12">
+            {principles.map((item, i) => (
+              <div key={item.title}>
+                <div className="font-display text-[#c5a046] text-xl mb-3">0{i + 1}</div>
+                <h3 className="font-display text-2xl text-[#1b365d] mb-3">{item.title}</h3>
+                <p className="text-zinc-600 leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>

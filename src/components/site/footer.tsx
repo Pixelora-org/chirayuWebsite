@@ -5,8 +5,8 @@ import { SmartImage } from './smart-image'
 
 export function Footer() {
   return (
-    <footer className="border-t border-zinc-200 mt-12 sm:mt-20 bg-zinc-50">
-      <div className="container py-10 sm:py-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-sm text-zinc-600">
+    <footer className="mt-8 sm:mt-16 border-t border-zinc-200/80 bg-white">
+      <div className="container py-12 sm:py-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 text-sm text-zinc-600">
         <div className="sm:col-span-2 min-w-0">
           <SmartImage
             src="/images/logo/logo.png"
@@ -14,15 +14,15 @@ export function Footer() {
             width={200}
             height={70}
             sizes="200px"
-            className="block h-12 sm:h-14 w-auto max-w-full object-contain mb-4"
+            className="block h-12 sm:h-14 w-auto max-w-full object-contain mb-5"
           />
-          <p className="mt-2 max-w-sm leading-relaxed">{site.description}</p>
-          <p className="mt-3 text-zinc-800 font-medium">{site.address.line1}</p>
+          <p className="max-w-sm leading-relaxed">{site.description}</p>
+          <p className="mt-4 text-zinc-800">{site.address.line1}</p>
           <p>{site.address.line2}</p>
         </div>
         <div>
-          <div className="font-semibold text-[#1b365d]">Navigate</div>
-          <ul className="mt-3 space-y-2">
+          <div className="font-display text-[#1b365d] text-lg">Navigate</div>
+          <ul className="mt-4 space-y-2">
             {navLinks.filter((l) => l.href !== '/').map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-[#c2185b]">
@@ -33,8 +33,8 @@ export function Footer() {
           </ul>
         </div>
         <div className="min-w-0">
-          <div className="font-semibold text-[#1b365d]">Contact</div>
-          <ul className="mt-3 space-y-2">
+          <div className="font-display text-[#1b365d] text-lg">Contact</div>
+          <ul className="mt-4 space-y-2">
             {site.phones.map((p) => (
               <li key={p.href}>
                 <a href={p.href} className="hover:text-[#c2185b]">
@@ -47,7 +47,7 @@ export function Footer() {
                 {site.email}
               </a>
             </li>
-            <li className="pt-2">
+            <li className="pt-3">
               <a
                 href={site.facebook}
                 target="_blank"
@@ -61,8 +61,8 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <div className="border-t border-zinc-200 py-6 text-center text-xs text-zinc-500 px-4">
-        © {new Date().getFullYear()} {site.name}. All rights reserved.
+      <div className="container py-5 border-t border-zinc-200/80 text-xs text-zinc-500">
+        © {new Date().getFullYear()} {site.name}
       </div>
     </footer>
   )

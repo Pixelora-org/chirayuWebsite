@@ -3,19 +3,19 @@ import { cn } from '../../lib/cn'
 import * as React from 'react'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400/50 disabled:opacity-50 disabled:pointer-events-none',
+  'inline-flex items-center justify-center rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400/50 disabled:opacity-50 disabled:pointer-events-none',
   {
     variants: {
       variant: {
-        default: 'bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm',
-        primary: 'bg-zinc-900 text-white hover:bg-zinc-800 shadow-sm',
+        default: 'bg-[#c2185b] text-white hover:bg-[#9c1249] shadow-sm',
+        primary: 'bg-[#c2185b] text-white hover:bg-[#9c1249] shadow-sm',
         ghost: 'bg-transparent hover:bg-zinc-100 text-zinc-900',
-        outline: 'border border-zinc-300 text-zinc-900 hover:bg-white/60 backdrop-blur'
+        outline: 'border border-zinc-300 text-zinc-900 hover:bg-zinc-50'
       },
       size: {
-        sm: 'h-9 px-4',
-        md: 'h-11 px-6',
-        lg: 'h-12 px-8 text-base'
+        sm: 'h-9 px-3 sm:px-4',
+        md: 'h-10 px-5 sm:h-11 sm:px-6',
+        lg: 'h-11 px-5 text-sm sm:h-12 sm:px-8 sm:text-base'
       }
     },
     defaultVariants: { variant: 'default', size: 'md' }

@@ -4,7 +4,7 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Chirayu Health Awareness & Research Centre | Dharwad, Karnataka',
   description: 'Community-focused health organization dedicated to improving public health through awareness, early detection, preventive care, and research-based interventions in Dharwad, Karnataka.',
-  metadataBase: new URL('https://chirayu.org'),
+  metadataBase: new URL('https://ngowebsite-zeta.vercel.app'),
   openGraph: { 
     title: 'Chirayu Health Awareness & Research Centre', 
     description: 'Building a healthier society through awareness, prevention, and community care.',

@@ -1,266 +1,168 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Navbar } from '../../components/site/navbar'
-import { Footer } from '../../components/site/footer'
+import Link from 'next/link'
+import { PageShell } from '../../components/site/page-shell'
+import { Button } from '../../components/ui/button'
+import { SmartImage } from '../../components/site/smart-image'
 import { Stethoscope, Activity, GraduationCap, Users, Heart, Shield } from 'lucide-react'
+import { photos } from '../../lib/site'
 
 const programs = [
   {
-    icon: <Stethoscope className="w-8 h-8" />,
-    title: "Health Awareness Programs",
-    description: "We conduct regular awareness sessions on various health topics to educate communities and prevent diseases.",
-    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop",
-    topics: [
-      "Diabetes & Hypertension",
-      "Anaemia & Nutrition",
-      "Women's Health",
-      "Mental Health",
-      "Lifestyle Diseases",
-      "Hygiene, Sanitation & Infectious Diseases",
-      "School Health Education"
+    icon: Stethoscope,
+    title: 'Health Awareness Programs',
+    description: 'Regular awareness sessions to educate communities and prevent disease.',
+    items: [
+      'Diabetes & Hypertension',
+      'Anaemia & Nutrition',
+      'Women’s Health',
+      'Mental Health',
+      'Lifestyle Diseases',
+      'Hygiene, Sanitation & Infectious Diseases',
+      'School Health Education',
     ],
-    color: "red"
+    heading: 'Awareness topics',
   },
   {
-    icon: <Activity className="w-8 h-8" />,
-    title: "Community Health Screening",
-    description: "Organizing free and affordable screening camps in rural villages, slum areas, schools, and communities.",
-    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1200&auto=format&fit=crop",
-    locations: [
-      "Rural villages",
-      "Slum areas",
-      "Tribal/remote locations",
-      "Schools & Colleges",
-      "Old-age groups",
-      "Driver & occupational worker groups"
+    icon: Activity,
+    title: 'Community Health Screening',
+    description: 'Free and affordable screening camps in villages, slums, schools, and workplaces.',
+    items: [
+      'Rural villages & remote locations',
+      'Schools & colleges',
+      'Senior citizen groups',
+      'Driver & occupational worker groups',
+      'BP, blood sugar, ECG',
+      'Anaemia, BMI, vision check',
     ],
-    screenings: [
-      "BP, Blood Sugar, ECG",
-      "CBC, Thyroid, Cholesterol",
-      "Anaemia, BMI",
-      "Vision check",
-      "Basic physical assessment"
-    ],
-    color: "blue"
+    heading: 'Where and what we screen',
   },
   {
-    icon: <Shield className="w-8 h-8" />,
-    title: "Research & Data-Based Intervention",
-    description: "Collecting community health data to identify disease patterns and support targeted health program design.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
-    activities: [
-      "Identify disease patterns",
-      "Improve health planning",
-      "Support research and publications",
-      "Help organizations design targeted health programs"
+    icon: GraduationCap,
+    title: 'School Health Programs',
+    description: 'Early detection and preventive care for students.',
+    items: [
+      'Vision screening',
+      'Growth assessment',
+      'Nutrition & hygiene education',
+      'Basic health check-ups',
+      'Mental health and stress awareness',
     ],
-    color: "purple"
+    heading: 'Services',
   },
   {
-    icon: <GraduationCap className="w-8 h-8" />,
-    title: "School Health Programs",
-    description: "Special initiatives for student health focusing on early detection and preventive care.",
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1200&auto=format&fit=crop",
-    services: [
-      "Vision screening",
-      "Growth assessment",
-      "Nutrition & hygiene education",
-      "Basic health check-ups",
-      "Mental health and stress awareness sessions"
+    icon: Users,
+    title: 'Women & Adolescent Health',
+    description: 'Programmes focused on women’s health, adolescent care, and preventive screening.',
+    items: [
+      'Anaemia screening',
+      'Menstrual health and hygiene',
+      'Thyroid & vitamin deficiency screening',
+      'Nutrition counselling',
+      'Women’s health awareness sessions',
     ],
-    color: "green"
+    heading: 'Services',
   },
   {
-    icon: <Users className="w-8 h-8" />,
-    title: "Women & Adolescent Health",
-    description: "Comprehensive programs focusing on women's health, adolescent care, and preventive screening.",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop",
-    services: [
-      "Anaemia screening",
-      "Menstrual health and hygiene",
-      "Thyroid & vitamin deficiency screening",
-      "Nutrition counselling",
-      "Women's health awareness sessions"
+    icon: Heart,
+    title: 'Senior Citizen Health Support',
+    description: 'Support for elderly community members, including chronic disease monitoring.',
+    items: [
+      'ECG & cardiac risk screening',
+      'Blood pressure & diabetes monitoring',
+      'Mobility, bone health & general check-ups',
+      'Chronic disease management',
+      'Health counselling for seniors',
     ],
-    color: "pink"
+    heading: 'Services',
   },
   {
-    icon: <Heart className="w-8 h-8" />,
-    title: "Senior Citizen Health Support",
-    description: "Specialized health services for elderly community members focusing on chronic disease management.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=1200&auto=format&fit=crop",
-    services: [
-      "ECG & cardiac risk screening",
-      "Blood pressure & diabetes monitoring",
-      "Mobility, bone health & general check-ups",
-      "Chronic disease management",
-      "Health counselling for seniors"
+    icon: Shield,
+    title: 'Research & Data-Based Intervention',
+    description: 'Community health data to identify patterns and design better programmes.',
+    items: [
+      'Identify disease patterns',
+      'Improve health planning',
+      'Support research and publications',
+      'Help organisations design targeted programmes',
     ],
-    color: "orange"
-  }
+    heading: 'Activities',
+  },
 ]
 
 export default function ProgramsPage() {
   return (
-    <div>
-      <Navbar />
-      <main className="pt-16">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-zinc-900 to-zinc-800 text-white">
-          <div className="container">
-            <motion.h1 
-              initial={{opacity:0, y:20}}
-              animate={{opacity:1, y:0}}
-              transition={{duration:.6}}
-              className="text-4xl md:text-5xl font-bold mb-4"
-            >
-              Our Programs & Projects
-            </motion.h1>
-            <motion.p 
-              initial={{opacity:0, y:20}}
-              animate={{opacity:1, y:0}}
-              transition={{duration:.6, delay:.1}}
-              className="text-xl text-zinc-300 max-w-3xl"
-            >
-              Comprehensive health programs reaching communities across Dharwad, Karnataka
-            </motion.p>
-          </div>
-        </section>
+    <PageShell>
+      <section className="py-10 sm:py-16 md:py-20 bg-[#faf7f4] border-b border-zinc-200">
+        <div className="container">
+          <p className="brand-kicker mb-3">Programs</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-[#1b365d]">Our Programs and Projects</h1>
+          <p className="text-base sm:text-xl text-zinc-600 max-w-3xl">
+            Comprehensive health programmes reaching communities across Dharwad, Karnataka.
+          </p>
+        </div>
+      </section>
 
-        {/* Programs Grid */}
-        <section className="py-20 bg-white">
-          <div className="container">
-            <div className="space-y-24">
-              {programs.map((program, index) => (
-                <motion.div
-                  key={index}
-                  initial={{opacity:0, y:50}}
-                  whileInView={{opacity:1, y:0}}
-                  viewport={{once:true}}
-                  transition={{duration:.6}}
-                  className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
-                >
-                  <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                    <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                      <Image 
-                        src={program.image} 
-                        alt={program.title} 
-                        fill 
-                        className="object-cover" 
-                      />
-                    </div>
-                  </div>
-                  <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                    <div className={`w-16 h-16 bg-${program.color}-100 rounded-full flex items-center justify-center mb-6`}>
-                      <div className={`text-${program.color}-600`}>{program.icon}</div>
-                    </div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900">{program.title}</h2>
-                    <p className="text-lg text-zinc-600 mb-6 leading-relaxed">{program.description}</p>
-                    
-                    {program.topics && (
-                      <div>
-                        <h3 className="font-semibold text-zinc-900 mb-3">Awareness Topics:</h3>
-                        <ul className="space-y-2">
-                          {program.topics.map((topic, i) => (
-                            <li key={i} className="flex items-start gap-2 text-zinc-600">
-                              <span className="text-red-600 mt-1">•</span>
-                              <span>{topic}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {program.locations && (
-                      <div className="mb-6">
-                        <h3 className="font-semibold text-zinc-900 mb-3">Locations:</h3>
-                        <ul className="space-y-2">
-                          {program.locations.map((location, i) => (
-                            <li key={i} className="flex items-start gap-2 text-zinc-600">
-                              <span className="text-blue-600 mt-1">•</span>
-                              <span>{location}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <h3 className="font-semibold text-zinc-900 mb-3 mt-4">Screenings Include:</h3>
-                        <ul className="space-y-2">
-                          {program.screenings?.map((screening, i) => (
-                            <li key={i} className="flex items-start gap-2 text-zinc-600">
-                              <span className="text-blue-600 mt-1">•</span>
-                              <span>{screening}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {program.activities && (
-                      <div>
-                        <h3 className="font-semibold text-zinc-900 mb-3">Activities:</h3>
-                        <ul className="space-y-2">
-                          {program.activities.map((activity, i) => (
-                            <li key={i} className="flex items-start gap-2 text-zinc-600">
-                              <span className="text-purple-600 mt-1">•</span>
-                              <span>{activity}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-
-                    {program.services && (
-                      <div>
-                        <h3 className="font-semibold text-zinc-900 mb-3">Services:</h3>
-                        <ul className="space-y-2">
-                          {program.services.map((service, i) => (
-                            <li key={i} className="flex items-start gap-2 text-zinc-600">
-                              <span className={`text-${program.color}-600 mt-1`}>•</span>
-                              <span>{service}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                </motion.div>
-              ))}
+      <section className="py-10 sm:py-16 bg-white">
+        <div className="container">
+          <div className="relative w-full h-56 sm:h-80 md:h-[460px] rounded-2xl overflow-hidden soft-shadow mb-10 sm:mb-16">
+            <SmartImage
+              src={photos.programs}
+              alt="Eye screening for an elderly community member"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 text-white">
+              <p className="text-xs sm:text-sm uppercase tracking-wide text-white/80">From our camps</p>
+              <p className="text-lg sm:text-xl md:text-2xl font-semibold">Vision and general screening for seniors and communities</p>
             </div>
           </div>
-        </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-zinc-50 to-stone-50">
-          <div className="container text-center">
-            <motion.div
-              initial={{opacity:0, y:30}}
-              whileInView={{opacity:1, y:0}}
-              viewport={{once:true}}
-              transition={{duration:.6}}
-              className="max-w-3xl mx-auto"
-            >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-zinc-900">Partner With Us</h2>
-              <p className="text-lg text-zinc-600 mb-8">
-                Interested in bringing our health programs to your community? Contact us to learn more about partnerships and collaborations.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <a href="/contact">
-                  <button className="px-8 py-3 bg-red-600 text-white rounded-full font-semibold hover:bg-red-700 transition-colors">
-                    Contact Us
-                  </button>
-                </a>
-                <a href="/get-involved">
-                  <button className="px-8 py-3 border-2 border-zinc-300 text-zinc-900 rounded-full font-semibold hover:bg-white transition-colors">
-                    Get Involved
-                  </button>
-                </a>
-              </div>
-            </motion.div>
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
+            {programs.map((program) => (
+              <article
+                key={program.title}
+                className="rounded-2xl border border-zinc-200 bg-white p-5 sm:p-8"
+              >
+                <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center mb-4 text-[#c2185b]">
+                  <program.icon className="w-6 h-6" />
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 text-[#1b365d]">{program.title}</h2>
+                <p className="text-zinc-600 mb-5 leading-relaxed">{program.description}</p>
+                <h3 className="font-semibold text-zinc-900 mb-2 text-sm uppercase tracking-wide">{program.heading}</h3>
+                <ul className="space-y-1.5">
+                  {program.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-zinc-600 text-sm">
+                      <span className="text-[#c2185b] mt-1">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
-        </section>
-      </main>
-      <Footer />
-    </div>
+        </div>
+      </section>
+
+      <section className="py-12 sm:py-16 md:py-20 bg-[#faf7f4]">
+        <div className="container text-center max-w-3xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-[#1b365d]">Partner With Us</h2>
+          <p className="text-base sm:text-lg text-zinc-600 mb-8">
+            Interested in bringing our health programmes to your school, workplace, or community? Get in touch.
+          </p>
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+            <Link href="/contact">
+              <Button size="lg">Contact Us</Button>
+            </Link>
+            <Link href="/get-involved">
+              <Button variant="outline" size="lg">Get Involved</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </PageShell>
   )
 }
